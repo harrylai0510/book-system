@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
+const log = require('../logger');
 const Model = require('../models');
 const Users = Model.User;
 
 const DB_QUERY = {
-    attributes: ['id', 'userName'],
+    attributes: ['id', 'userName', 'firstName', 'lastName', 'lemail', 'password'],
     limit: 10
 }
 
 /* Creating a user info */
 router.post('/', async function (req, res, next) {
     const userInfo = req.body;
-    if (!userInfo || !userInfo.userName) {
+    if (!userInfo || !userInfo.lemail) {
         res.send({
             "msg": "Not enough info to create a user. (User/Create)"
         })
@@ -26,6 +26,7 @@ router.post('/', async function (req, res, next) {
             "msg": `created a user info (user id: ${result.dataValues.id})`,
         });
     } catch (e) {
+        log.error('failed to create a new user', e);
         res.send({
             "msg": "failed to create a new user",
             "err": e.toString()
@@ -39,6 +40,7 @@ router.get('/', async function (req, res, next) {
         const UserList = await Users.findAll(DB_QUERY) || [];
         res.send(UserList);
     } catch (e) {
+        log.error('failed to read users', e);
         res.send({
             "msg": "failed to read users",
             "err": e.toString()
@@ -60,6 +62,7 @@ router.get('/:userId', async function (req, res, next) {
         const User = await Users.findOne(STATEMENT) || {};
         res.send(User);
     } catch (e) {
+        log.error('failed to read user', e);
         res.send({
             "msg": "failed to read user",
             "err": e.toString()
@@ -76,15 +79,13 @@ router.put('/:userId', async function (req, res, next) {
             "msg": "Not enough info to update a user. (User/Update1)"
         })
     }
-    if (!userInfo || !userInfo.userName) {
-        res.send({
-            "msg": "Not enough info to update a user. (User/Update2)"
-        })
-    }
 
     try {
         const result = await Users.update(
-            {userName: userInfo.userName},
+            {
+                firstName: userInfo.firstName,
+                lastName: userInfo.lastName,
+            },
             {
                 where: {
                     id: userId,
@@ -92,11 +93,11 @@ router.put('/:userId', async function (req, res, next) {
             }
         );
 
-        console.log(result);
         res.send({
             msg: `${result[0]} record(s) has been updated.`
         })
     } catch (e) {
+        log.error('failed to update user', e);
         res.send({
             "msg": "failed to update user",
             "err": e.toString()
@@ -119,11 +120,11 @@ router.delete('/:userId', async function (req, res, next) {
                 id: userId,
             },
         })
-        console.log(result);
         res.send({
             msg: `${result} record(s) has been deleted.`
         })
     } catch (e) {
+        log.error('failed to delete user', e);
         res.send({
             "msg": "failed to delete user",
             "err": e.toString()

@@ -12,10 +12,12 @@ const DB_QUERY = {
 /* Creating a book info */
 router.post('/', async function (req, res, next) {
     const bookInfo = req.body;
+    console.log(bookInfo)
     if (!bookInfo || !bookInfo.bookName) {
         res.send({
             "msg": "Not enough info to create a book. (Book/Create)"
         })
+        return;
     }
 
     try {
@@ -25,7 +27,7 @@ router.post('/', async function (req, res, next) {
         res.send({
             "msg": `created a book info (book id: ${result.dataValues.id})`,
         });
-    } catch (e) { 
+    } catch (e) {
         console.log(e)
         res.send({
             "msg": "failed to create a new book",

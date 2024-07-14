@@ -26,22 +26,22 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     History.init({
-        bookId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Books',
-                key: 'id'
-            },
-        },
-        userId: {
-            allowNull: false,
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Users',
-                key: 'id'
-            },
-        },
+        // bookId: {
+        //     allowNull: false,
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'Books',
+        //         key: 'id'
+        //     },
+        // },
+        // userId: {
+        //     allowNull: false,
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'Users',
+        //         key: 'id'
+        //     },
+        // },
     }, {
         sequelize,
         modelName: 'History',

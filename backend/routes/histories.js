@@ -5,7 +5,7 @@ const Models = require('../models');
 const Histories = Models.History;
 
 const DB_QUERY = {
-    attributes: ['id', 'user.userName', 'book.bookName'],
+    attributes: ['id', 'user.firstName', 'user.lastName', 'book.bookName'],
     limit: 10
 }
 
@@ -19,7 +19,7 @@ router.post('/', async function (req, res, next) {
     }
 
     try {
-        const result = History.build(historyInfo);
+        const result = Histories.build(historyInfo);
         await result.save();
 
         res.send({
@@ -43,7 +43,7 @@ router.get('/', async function (req, res, next) {
                 {
                     model: Models.User,
                     as: 'user',
-                    attributes: ['userName']
+                    attributes: ['firstName', 'lastName']
                 },
                 {
                     model: Models.Book,
