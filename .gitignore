@@ -32,3 +32,4 @@ frontend/.idea
 ## Backend
 backend/node_modules
 backend/.idea
+Backend/logs
