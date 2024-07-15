@@ -11,24 +11,24 @@ module.exports = {
             },
             firstName: {
                 allowNull: true,
-                type: DataTypes.STRING
+                type: Sequelize.STRING
             },
             lastName: {
                 allowNull: true,
-                type: DataTypes.STRING
+                type: Sequelize.STRING
             },
             userName: {
                 allowNull: true,
-                type: DataTypes.VIRTUAL,
+                type: Sequelize.VIRTUAL,
             },
             lemail: {
                 allowNull: false,
-                type: DataTypes.STRING,
+                type: Sequelize.STRING,
                 unique: true
             },
             password: {
                 allowNull: false,
-                type: DataTypes.STRING,
+                type: Sequelize.STRING,
             },
             createdAt: {
                 allowNull: false,
