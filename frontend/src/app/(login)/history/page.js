@@ -50,7 +50,7 @@ export default function History(props) {
     const [selectedRow, setSelectedRow] = useState([]);
 
     const getHistories = async function () {
-        const rawHistories = await fetch('http://127.0.0.1:3001/histories', {method: 'get'});
+        const rawHistories = await fetch(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + '/histories', {method: 'get'});
         const result = rawHistories.ok ? await rawHistories.json() : [];
         setHistories(result)
     }
@@ -58,11 +58,11 @@ export default function History(props) {
     const getOptionData = async function () {
         let tempData = [];
 
-        const rawUsers = await fetch('http://127.0.0.1:3001/users', {method: 'get'});
+        const rawUsers = await fetch(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + '/users', {method: 'get'});
         const resultUser = rawUsers.ok ? await rawUsers.json() : [];
         tempData['userList'] = resultUser;
 
-        const rawBooks = await fetch('http://127.0.0.1:3001/books', {method: 'get'});
+        const rawBooks = await fetch(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + '/books', {method: 'get'});
         const resultBook = rawBooks.ok ? await rawBooks.json() : [];
         tempData['bookList'] = resultBook;
 

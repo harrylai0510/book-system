@@ -122,7 +122,7 @@ export default function LeftDrawer(props) {
     async function handleClick() {
         const result = await fetch(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + '/auth/logout', { method: 'post', credentials: 'include' });
         signOut({
-            callbackUrl: 'http://localhost:3000/sign-in'
+            callbackUrl: process.env.NEXT_PUBLIC_BACKEND_DOMAIN + '/sign-in'
         })
     }
 

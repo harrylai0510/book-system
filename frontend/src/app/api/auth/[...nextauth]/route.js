@@ -30,7 +30,7 @@ const authOptions = {
             },
             async authorize(credentials, req) {
                 try {
-                    const res = await fetch("http://localhost:3001/auth/login", {
+                    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + "/auth/login", {
                         method: 'POST',
                         body: JSON.stringify(credentials),
                         headers: {"Content-Type": "application/json"}
