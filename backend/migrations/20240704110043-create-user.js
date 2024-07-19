@@ -17,10 +17,6 @@ module.exports = {
                 allowNull: true,
                 type: Sequelize.STRING
             },
-            userName: {
-                allowNull: true,
-                type: Sequelize.VIRTUAL,
-            },
             lemail: {
                 allowNull: false,
                 type: Sequelize.STRING,
