@@ -35,8 +35,8 @@ export default function Login() {
     const defaultTheme = createTheme();
     const router = useRouter();
     const [formData, setFormData] = useState({
-        lemail: "harrylai05@gmail.com",
-        password: "1234"
+        lemail: "admin@admin.com",
+        password: "admin"
     });
 
     function handleInput(e) {
@@ -108,6 +108,7 @@ export default function Login() {
                             id="lemail"
                             label="Email Address"
                             name="lemail"
+                            value={formData.lemail}
                             autoComplete="email"
                             autoFocus
                             onChange={handleInput}
@@ -120,6 +121,7 @@ export default function Login() {
                             label="Password"
                             type="password"
                             id="password"
+                            value={formData.password}
                             autoComplete="current-password"
                             onChange={handleInput}
                         />
