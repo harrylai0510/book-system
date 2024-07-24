@@ -9,6 +9,7 @@ var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
 var historiesRouter = require('./routes/histories');
+var reportsRouter = require('./routes/reports');
 
 var app = express();
 
@@ -32,5 +33,6 @@ app.use('/auth', loginRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
 app.use('/histories', historiesRouter);
+app.use('/reports', reportsRouter);
 
 module.exports = app;
