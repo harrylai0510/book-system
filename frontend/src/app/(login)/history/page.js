@@ -75,7 +75,7 @@ export default function History(props) {
 
     function handleCloseModel() {
         setFormData({
-            userId: null,
+            ...formData,
             bookId: null
         })
         setModelOpen(false);
