@@ -2,28 +2,21 @@
 
 import {useState} from "react";
 import {styled, useTheme} from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
+import { Toolbar, Box, Divider, List, ListItem, IconButton, ListItemButton, ListItemIcon, ListItemText, Button, Grid, Typography, CssBaseline } from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import PersonIcon from '@mui/icons-material/Person';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import HistoryIcon from '@mui/icons-material/History';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
-import Grid from "@mui/material/Grid";
-import {Button} from "@mui/material";
 import {useSession, signOut} from "next-auth/react";
+
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -99,9 +92,10 @@ export default function LeftDrawer(props) {
     const router = useRouter();
 
     const menuItems = [
-        {name: 'User', icon: '', href: '/user'},
-        {name: 'Book', icon: '', href: '/book'},
-        {name: 'History', icon: '', href: '/history'},
+        {name: 'User', icon: 'PersonIcon', href: '/user'},
+        {name: 'Book', icon: 'ImportContactsIcon', href: '/book'},
+        {name: 'History', icon: 'HistoryIcon', href: '/history'},
+        {name: 'Report', icon: 'AssessmentIcon', href: '/report'},
     ];
 
     let name = '';
@@ -164,7 +158,7 @@ export default function LeftDrawer(props) {
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+                        <ChevronLeftIcon/>
                     </IconButton>
                 </DrawerHeader>
                 <Divider/>
@@ -184,7 +178,10 @@ export default function LeftDrawer(props) {
                                         mr: open ? 3 : 'auto',
                                         justifyContent: 'center',
                                     }}>
-                                        <InboxIcon/>
+                                        { item.icon === 'PersonIcon' ? <PersonIcon/> : '' }
+                                        { item.icon === 'ImportContactsIcon' ? <ImportContactsIcon/> : '' }
+                                        { item.icon === 'HistoryIcon' ? <HistoryIcon/> : '' }
+                                        { item.icon === 'AssessmentIcon' ? <AssessmentIcon/> : '' }
                                     </ListItemIcon>
                                     <ListItemText primary={item.name} sx={{opacity: open ? 1 : 0}}/>
                                 </ListItemButton>
